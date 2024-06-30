@@ -9,19 +9,11 @@ function App() {
     const [filteredCharacterInfos, setFilteredCharacterInfos] = useState([]);
 
     useEffect(() => {
-        async function fetchAllCharacters() {
+        const fetchAllCharacters = async () => {
             try {
-                let page = 1;
-                let allCharacters = [];
-                let response;
-
-                do {
-                    response = await axios.get(`https://rickandmortyapi.com/api/character?page=${page}`);
-                    allCharacters = [...allCharacters, ...response.data.results];
-                    page++;
-                } while (response.data.info.next);
-
-                setCharacterInfos(allCharacters);
+                const response = await axios.get(`https://rickandmortyapi.com/api/character`);
+                setCharacterInfos(response.data.results);
+                setFilteredCharacterInfos(response.data.results);
             } catch (error) {
                 console.error("Veri çekerken hata oluştu:", error);
             }
