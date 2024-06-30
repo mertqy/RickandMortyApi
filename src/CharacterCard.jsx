@@ -9,6 +9,13 @@ function CharacterCard({characterInfos}) {
                     <div key={character.id} className='childCard'>
                         <h1>{character.name}</h1>
                         <img src={character.image} alt={character.name}/>
+                        {character.status === 'Alive' ? (
+                            <p className='has-text-success mt-3'>{character.status}</p>
+                        ) : character.status === 'Dead' ? (
+                            <p className='has-text-danger mt-3'>{character.status}</p>
+                        ) : (
+                            <p className='has-text-warning mt-3'>{character.status}</p>
+                        )}
                     </div>
                 );
             })}
